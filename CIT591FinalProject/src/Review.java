@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * Review class will store the data regarding individual reviews.
  * @author Xinyi, Xiting, Yong-Jin
@@ -19,7 +21,8 @@ public class Review {
 	private String departmentName;
 	private String className;
 	//sentiment flag will be set up later on.
-	private String sentiment;
+	private ArrayList<String> sentiments;
+	private int sentimentScore;
 	
 	/**
 	 * Constructor for Review Class
@@ -47,15 +50,32 @@ public class Review {
 		this.divisionName = divisionName;
 		this.departmentName = departmentName;
 		this.className = className;
+		//initialize sentiments and scores
+		//will set these variables later on once SentimentAnalysis has been run.
+		sentiments = new ArrayList<>();
+		sentimentScore = 0;
 	}
 
-	public String getSentiment() {
-		return sentiment;
+
+	public ArrayList<String> getSentiments() {
+		return sentiments;
 	}
 
-	public void setSentiment(String sentiment) {
-		this.sentiment = sentiment;
+
+	public void setSentiments(ArrayList<String> sentiments) {
+		this.sentiments = sentiments;
 	}
+
+
+	public int getSentimentScore() {
+		return sentimentScore;
+	}
+
+
+	public void setSentimentScore(int sentimentScore) {
+		this.sentimentScore = sentimentScore;
+	}
+
 
 	public String getId() {
 		return id;

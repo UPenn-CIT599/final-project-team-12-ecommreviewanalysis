@@ -37,6 +37,8 @@ public class ReviewReader {
 				String title = record.get("Title");
 				String reviewText = record.get("Review Text");
 				int rating = Integer.parseInt(record.get("Rating"));
+				
+				//translate indicator value to boolean for later purpose.
 				boolean recommendedInd = false;
 				if (record.get("Recommended IND").equals("1")) {
 					recommendedInd = true;
@@ -45,7 +47,7 @@ public class ReviewReader {
 				String divisionName = record.get("Division Name");
 				String departmentName = record.get("Department Name");
 				String className = record.get("Class Name");
-				
+				//inserting review data into the arraylist of reviews.
 				reviews.add(new Review(id, clothingId, age, title, reviewText, rating, recommendedInd,
 						positiveFeedbackCount, divisionName, departmentName, className));
 			}
