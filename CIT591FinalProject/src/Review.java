@@ -43,6 +43,7 @@ public class Review {
 		this.id = id;
 		this.clothingId = clothingId;
 		this.age = age;
+		this.title = title;
 		this.reviewText = reviewText;
 		this.rating = rating;
 		this.recommendedInd = recommendedInd;
@@ -88,6 +89,10 @@ public class Review {
 	public int getAge() {
 		return age;
 	}
+	
+	public String getTitle() {
+		return title;
+	}
 
 	public String getReviewText() {
 		return reviewText;
@@ -97,7 +102,7 @@ public class Review {
 		return rating;
 	}
 
-	public boolean isRecommendedInd() {
+	public boolean getRecommendedInd() {
 		return recommendedInd;
 	}
 

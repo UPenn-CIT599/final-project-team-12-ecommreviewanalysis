@@ -39,6 +39,7 @@ public class SentimentAnalysisOnReviews {
 
 				for(CoreSentence sentence: sentences) {
 					String sentiment = sentence.sentiment();
+					
 					sentiments.add(sentiment);
 
 					//add score by 1 if the sentiment is Positive
@@ -48,8 +49,13 @@ public class SentimentAnalysisOnReviews {
 						sentimentScore++;
 					} else if(sentiment.equals("Negative")) {
 						sentimentScore--;
-					} 
-					System.out.println(sentiment + "\t" + sentence);
+					} else if(sentiment.equals("Very positive")) {
+						sentimentScore += 2;
+					} else if(sentiment.equals("Very negative")) {
+						sentimentScore -= 2;
+					}
+					
+					//System.out.println(sentiment + "\t" + sentence);
 
 					//update the reviews with newly calculated variables.
 					review.setSentiments(sentiments);

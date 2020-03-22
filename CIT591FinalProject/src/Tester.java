@@ -16,6 +16,10 @@ public class Tester {
 			ArrayList<Review> reviews = rr.getReviews();
 			SentimentAnalysisOnReviews saor = new SentimentAnalysisOnReviews(reviews);			
 			saor.runSentimentAnalysis();
+			SentimentAnalysisOutputFileWriter fileWriter =
+					new SentimentAnalysisOutputFileWriter(saor.getUpdatedReviews());
+			
+			fileWriter.generateOutputFile();
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
