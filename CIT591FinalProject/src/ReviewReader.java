@@ -7,18 +7,27 @@ import java.util.ArrayList;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 
+/**
+ * ReviewReader class is designed to read the files in and store the data in 
+ * Review class object. It would generate arraylist of reviews and return it to other class
+ * for the analysis.
+ * @author Xinyi, Xiting, Yong-Jin
+ *
+ */
 public class ReviewReader {
 	
-	private final String csvFileName = "/TEMP/Womens Clothing E-Commerce Reviews.csv";
+	private final String CSV_FILE_NAME = "/TEMP/Womens Clothing E-Commerce Reviews.csv";
 	private ArrayList<Review> reviews;
-	
+	/**
+	 * The constructor for ReviewReader does not take in the parameter.
+	 */
 	public ReviewReader() {
 		reviews = new ArrayList<>();
 	}
 	
 	public void readFile() throws IOException {
 		try {
-			Reader in = new FileReader(csvFileName);
+			Reader in = new FileReader(CSV_FILE_NAME);
 			Iterable<CSVRecord> records = CSVFormat.EXCEL.withHeader().parse(in);
 			//reading the record
 			for (CSVRecord record : records) {

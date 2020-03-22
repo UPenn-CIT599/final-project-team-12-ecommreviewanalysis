@@ -9,9 +9,12 @@ public class Tester {
 		try {
 			rr.readFile();
 			ArrayList<Review> reviews = rr.getReviews();
-			for (Review review: reviews) {
-				System.out.println(review.getId());
-			}
+			
+			SentimentAnalysisOnReviews saor = new SentimentAnalysisOnReviews(reviews);
+			
+			saor.runSentimentAnalysis();
+			
+			
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

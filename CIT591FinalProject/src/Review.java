@@ -18,6 +18,8 @@ public class Review {
 	private String divisionName;
 	private String departmentName;
 	private String className;
+	//sentiment flag will be set up later on.
+	private String sentiment;
 	
 	/**
 	 * Constructor for Review Class
@@ -45,6 +47,14 @@ public class Review {
 		this.divisionName = divisionName;
 		this.departmentName = departmentName;
 		this.className = className;
+	}
+
+	public String getSentiment() {
+		return sentiment;
+	}
+
+	public void setSentiment(String sentiment) {
+		this.sentiment = sentiment;
 	}
 
 	public String getId() {
