@@ -1,3 +1,0 @@
-This is a long and boring sentence.
-This another one.
-Java file reading example.
