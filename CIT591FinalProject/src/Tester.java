@@ -14,11 +14,15 @@ public class Tester {
 		try {
 			rr.readFile();
 			ArrayList<Review> reviews = rr.getReviews();
-			SentimentAnalysisOnReviews saor = new SentimentAnalysisOnReviews(reviews);			
+			SentimentAnalysisOnReviews saor = new SentimentAnalysisOnReviews(reviews);
+
+			System.out.println(reviews.size());
+
+
 			saor.runSentimentAnalysis();
 			SentimentAnalysisOutputFileWriter fileWriter =
 					new SentimentAnalysisOutputFileWriter(saor.getUpdatedReviews());
-			
+
 			fileWriter.generateOutputFile();
 
 		} catch (IOException e) {
@@ -26,7 +30,7 @@ public class Tester {
 			e.printStackTrace();
 			System.out.println("Oops...Something went wrong with csvParser");
 		}
-		
+
 	}
 
 }
