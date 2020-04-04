@@ -8,11 +8,18 @@ import java.util.ArrayList;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVPrinter;
-
+/**
+ * This will generate csv file of array list of reviews.
+ * Since coreNLP takes long time to execute.
+ * We are separating the process into two. One is SentimentAnalysis part and other is our main data analysis so
+ * we can have answers to your question.
+ * @author Xiting, YongJin, Xinyi
+ *
+ */
 public class SentimentAnalysisOutputFileWriter {
 	private ArrayList<Review> reviews;
 
-	private static final String OUTPUT_FILE_PATH = "/TEMP/Sentiment_Analysis_Output.csv";
+	private static final String OUTPUT_FILE_PATH = "Sentiment_Analysis_Output.csv";
 
 	public SentimentAnalysisOutputFileWriter(ArrayList<Review> reviews){
 		this.reviews = reviews;
@@ -22,9 +29,9 @@ public class SentimentAnalysisOutputFileWriter {
 		try(
 				BufferedWriter writer = Files.newBufferedWriter(Paths.get(OUTPUT_FILE_PATH));
 				CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT.withHeader(
-						"ID", "ClothingID", "Age", "Title", "ReviewText", "Rating"
-						,"Recommended Indicator", "PositiveFeedbackCnt", "Division Name"
-						,"Department Name", "Class Name", "Sentiments", "SentimentScore"));
+						"ID", "Clothing ID", "Age", "Title", "Review Text", "Rating"
+						,"Recommended IND", "Positive Feedback Count", "Division Name"
+						,"Department Name", "Class Name", "Sentiments", "Sentiment Score"));
 				){
 			
 		    int batchCount = 0;

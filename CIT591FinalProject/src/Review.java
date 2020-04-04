@@ -57,6 +57,43 @@ public class Review {
 		sentimentScore = 0;
 	}
 
+	/**
+	 * Secondary Constructor for the time we read the review file for the second time.
+	 * @param id
+	 * @param clothingId
+	 * @param age
+	 * @param title
+	 * @param reviewText
+	 * @param rating
+	 * @param recommendedInd
+	 * @param positiveFeedbackCount
+	 * @param divisionName
+	 * @param departmentName
+	 * @param className
+	 * @param sentiments
+	 * @param sentimentScore
+	 */
+	public Review(String id, String clothingId, int age, String title, String reviewText, int rating,
+			boolean recommendedInd, int positiveFeedbackCount, String divisionName, String departmentName,
+			String className, ArrayList<String> sentiments, int sentimentScore) {
+		
+		this.id = id;
+		this.clothingId = clothingId;
+		this.age = age;
+		this.title = title;
+		this.reviewText = reviewText;
+		this.rating = rating;
+		this.recommendedInd = recommendedInd;
+		this.positiveFeedbackCount = positiveFeedbackCount;
+		this.divisionName = divisionName;
+		this.departmentName = departmentName;
+		this.className = className;
+		//initialize sentiments and scores
+		//will set these variables later on once SentimentAnalysis has been run.
+		this.sentiments = sentiments;
+		this.sentimentScore = sentimentScore;
+	}
+
 
 	public ArrayList<String> getSentiments() {
 		return sentiments;

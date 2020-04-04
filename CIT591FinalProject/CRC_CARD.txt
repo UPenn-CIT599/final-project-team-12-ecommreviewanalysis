@@ -1,0 +1,34 @@
+Class: ReviewReader
+Responsibilities: Read Input File and contain the data in necessary format.
+Collaborators: Review
+
+Class: Review 
+Responsibilities: Store and provide data on reviews that is read from FileReader.
+Collaborator: None
+
+Class: SentimentAnalysisOnReviews 
+Responsibilities: After input file has been read by ReviewReader, SentimentAnalyisOnReview class will actually analyze reviews by sentences and also
+					score each of reviews by the simple algorithm that we defined.
+Collaborator: SentimentAnalyzer
+
+Class: SentimentAnalyzer 
+Responsibilities: Stanford CoreNLP requires some configuration to run the sentiment analysis on texts. This class is to set the analyzer class with
+				the configuration that is needed for the analysis.
+Collaborator: None
+
+Class: SentimentAnalysisOutputFileWriter
+Responsibilities: Output the result from SentimentAnalysis as csv file including in form of Review Data.
+Collaborator: None
+
+
+Class: ReviewAnalysis 
+Responsibilities: Run final analysis on Review data (which includes outcome from Sentiment Analysis) 
+Collaborators: ReviewReader
+
+Class: ReviewAnalysisRunner
+Responsibilities: Run and output the final analysis.
+Collaborators: ReviewAnalysis, AnalysisResultFileWriter
+
+Class: AnalysisResultFileWriter
+Responsibilities: Write question and answer to our data analysis.
+Collaborator: ReviewAnalysis

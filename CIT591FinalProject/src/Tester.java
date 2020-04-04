@@ -17,14 +17,14 @@ public class Tester {
 			SentimentAnalysisOnReviews saor = new SentimentAnalysisOnReviews(reviews);
 
 			System.out.println(reviews.size());
-
-
+			
 			saor.runSentimentAnalysis();
 			SentimentAnalysisOutputFileWriter fileWriter =
 					new SentimentAnalysisOutputFileWriter(saor.getUpdatedReviews());
 
 			fileWriter.generateOutputFile();
-
+			
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

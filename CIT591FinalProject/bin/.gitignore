@@ -1,2 +1,11 @@
+/Review.class
+/ReviewReader.class
 /ReviewReaderJunitTest.class
-/FileReaderTest.class
+/SentimentAnalysisOnReviews.class
+/SentimentAnalysisOutputFileWriter.class
+/SentimentAnalyzer.class
+/Tester.class
+/org/
+/ReviewAnalysis.class
+/ReviewAnalysisRunner.class
+/AnalysisResultFileWriter.class
