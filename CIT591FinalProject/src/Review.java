@@ -6,8 +6,6 @@ import java.util.ArrayList;
  *
  */
 
-//this is my macbook change.
-//This is my windows change. - from desktop.
 
 
 public class Review {
