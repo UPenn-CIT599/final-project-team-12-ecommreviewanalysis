@@ -12,7 +12,10 @@ import java.util.List;
 public class ReviewAnalysis {
 
 	private ArrayList<Review> reviews;
-
+	/**
+	 * Constructor for ReviewAnalysis class.
+	 * @param reviews It will take ArrayList of reviews that we extracted from csv file and sentiment analysis.
+	 */
 	public ReviewAnalysis(ArrayList<Review> reviews) {
 		this.reviews= reviews;
 	}
@@ -20,7 +23,7 @@ public class ReviewAnalysis {
 	/**
 	 * To get the negative reviews
 	 * Consider the review is negative if the sentiment score is less then -3
-	 * @return negative reviews arraylist<Review>
+	 * @return negative reviews arraylist of reviews.
 	 */
 	public ArrayList<Review> getNegativeReviews() {
 		ArrayList<Review> negReviews = new ArrayList<Review>();
