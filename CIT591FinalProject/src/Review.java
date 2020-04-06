@@ -6,6 +6,8 @@ import java.util.ArrayList;
  *
  */
 
+//this is my macbook change.
+
 public class Review {
 	//for ids, even though they are in numeric, it is better to keep these as string 
 	//since we are not going to perform any arithmetic operations to these.
