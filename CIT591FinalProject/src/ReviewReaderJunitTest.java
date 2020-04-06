@@ -30,7 +30,7 @@ public class ReviewReaderJunitTest {
 		assertEquals(actualNumberOfRecords, reviews.size(),  "# of records do not match!" );
 	}
 	
-	//test if the data are being ingested correctly.
+	//test if the data are being read correctly.
 	@Test
 	public void testDataExtraction() {
 		Review review1 = reviews.get(0);

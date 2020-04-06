@@ -38,6 +38,10 @@ public class ReviewReader {
 		this.inputFileName = fileName;
 	}
 
+	/**
+	 * This one mainly reads the CSV file.
+	 * @throws IOException
+	 */
 	public void readFile() throws IOException {
 		try {
 			Reader in = new FileReader(inputFileName);
@@ -60,7 +64,7 @@ public class ReviewReader {
 				String divisionName = record.get("Division Name");
 				String departmentName = record.get("Department Name");
 				String className = record.get("Class Name");
-				
+
 				//when we read the input file for the scond time after we run Sentiment Analysis
 				//we need to read the file again.
 				//So we need to be able to capture newly appended data columns : Sentiments and SentimentScore

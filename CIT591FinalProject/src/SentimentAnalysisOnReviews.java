@@ -16,13 +16,17 @@ public class SentimentAnalysisOnReviews {
 	private ArrayList<Review> reviews;
 	
 	/**
-	 * 
+	 * The constructor for SentimentAnalysis
 	 * @param reviews
 	 */
 	public SentimentAnalysisOnReviews(ArrayList<Review> reviews) {
 		this.reviews = reviews;
 	}
 
+	/**
+	 * This one will actually run sentiment analysis per sentence from the review we extracted from
+	 * csv file.
+	 */
 	public void runSentimentAnalysis() {
 		SentimentAnalyzer sentimentAnalyzer = new SentimentAnalyzer();
 		StanfordCoreNLP stanfordCoreNLP = sentimentAnalyzer.getSentimentAnalyzer();
