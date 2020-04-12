@@ -36,6 +36,7 @@ public class ReviewReader {
 	public ReviewReader(String fileName, boolean isSecondary) {
 		this();
 		this.inputFileName = fileName;
+		this.isSecondary = isSecondary;
 	}
 
 	/**
