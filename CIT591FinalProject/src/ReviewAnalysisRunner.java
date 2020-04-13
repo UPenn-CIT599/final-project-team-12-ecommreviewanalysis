@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * This is for us to run our different java code class in one main location executing sequence of actions we need.
@@ -10,14 +11,33 @@ import java.util.ArrayList;
 public class ReviewAnalysisRunner {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		ReviewReader reviewReader = new ReviewReader();
-		try {
-			reviewReader.readFile();
-		} catch (IOException e) {
-			System.out.println("Could not find the input file");
-		}
 
+		ReviewReader secondRR = new ReviewReader("Sentiment_Analysis_Output.csv", true);
+		try {
+			secondRR.readFile();
+			ArrayList<Review> newValidReviews = secondRR.getValidReviews();
+			ReviewAnalysis ra = new ReviewAnalysis(newValidReviews);
+			
+			System.out.println("The average age of positive reviews is " + ra.getAveAgeOfPosReviews());
+			System.out.println();
+			
+			System.out.println("The median age of positive reviews is " + ra.getMedianAgeOfPosReviews());
+			System.out.println("\n");
+			
+			System.out.println("Model with best overall reviews in each class:");
+			ra.findModelWithKeywords(1);
+			System.out.println("\n");
+			
+			System.out.println("Model with worst overall reviews in each class:");
+			ra.findModelWithKeywords(-1);
+			System.out.println("\n");
+	
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("Oops...Something went wrong with csvParser");
+		}
+	
 	}
 
 

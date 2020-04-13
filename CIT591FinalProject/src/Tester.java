@@ -16,7 +16,7 @@ public class Tester {
 			ArrayList<Review> reviews = rr.getReviews();
 			SentimentAnalysisOnReviews saor = new SentimentAnalysisOnReviews(reviews);
 
-			System.out.println(reviews.size());
+			//System.out.println(reviews.size());
 			
 			saor.runSentimentAnalysis();
 			SentimentAnalysisOutputFileWriter fileWriter =
