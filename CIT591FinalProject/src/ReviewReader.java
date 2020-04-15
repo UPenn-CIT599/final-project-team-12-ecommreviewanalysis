@@ -81,7 +81,7 @@ public class ReviewReader {
 				else {
 					//inserting review data into the ArrayList  of reviews.
 					reviews.add(new Review(id, clothingId, age, title, reviewText, rating, recommendedInd,
-							positiveFeedbackCount, divisionName, departmentName, className));
+							positiveFeedbackCount, divisionName, departmentName, className));			
 				}
 			}
 
@@ -93,6 +93,16 @@ public class ReviewReader {
 
 	public ArrayList<Review> getReviews() {
 		return reviews;
+	}
+	
+	public ArrayList<Review> getValidReviews(){
+		ArrayList<Review> validReviews = new ArrayList<Review>();
+		for(Review r : reviews) {
+			if(!r.getReviewText().equals("")) {
+				validReviews.add(r);
+			}
+		}
+		return validReviews;
 	}
 
 
