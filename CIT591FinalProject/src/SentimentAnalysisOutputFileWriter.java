@@ -33,8 +33,8 @@ public class SentimentAnalysisOutputFileWriter {
 						,"Recommended IND", "Positive Feedback Count", "Division Name"
 						,"Department Name", "Class Name", "Sentiments", "Sentiment Score"));
 				){
-			
-		    int batchCount = 0;
+
+			int batchCount = 0;
 			for(Review review: reviews) {
 				csvPrinter.printRecord(review.getId(), review.getClothingId()
 						, String.valueOf(review.getAge()), review.getTitle(), review.getReviewText()
@@ -43,7 +43,7 @@ public class SentimentAnalysisOutputFileWriter {
 						, review.getDepartmentName(), review.getClassName()
 						, review.getSentiments(), review.getSentimentScore());
 				batchCount++;
-				
+
 				if(batchCount % 500 == 0) {
 					csvPrinter.flush();
 				}

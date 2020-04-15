@@ -20,5 +20,10 @@
 			<type>2</type>
 			<location>C:/Users/lyj90/Downloads/commons-csv-1.8-src.tar/commons-csv-1.8-src</location>
 		</link>
+		<link>
+			<name>source</name>
+			<type>2</type>
+			<location>C:/Users/lyj90/Downloads/jfreechart-1.0.19/jfreechart-1.0.19/source</location>
+		</link>
 	</linkedResources>
 </projectDescription>

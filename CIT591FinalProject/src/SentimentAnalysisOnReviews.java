@@ -14,7 +14,7 @@ import edu.stanford.nlp.pipeline.StanfordCoreNLP;
  */
 public class SentimentAnalysisOnReviews {
 	private ArrayList<Review> reviews;
-	
+
 	/**
 	 * The constructor for SentimentAnalysis
 	 * @param reviews
@@ -43,7 +43,7 @@ public class SentimentAnalysisOnReviews {
 
 				for(CoreSentence sentence: sentences) {
 					String sentiment = sentence.sentiment();
-					
+
 					sentiments.add(sentiment);
 
 					//add score by 1 if the sentiment is Positive
@@ -58,7 +58,7 @@ public class SentimentAnalysisOnReviews {
 					} else if(sentiment.equals("Very negative")) {
 						sentimentScore -= 2;
 					}
-					
+
 					//System.out.println(sentiment + "\t" + sentence);
 
 					//update the reviews with newly calculated variables.
