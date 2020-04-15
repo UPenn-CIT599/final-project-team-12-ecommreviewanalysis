@@ -24,24 +24,20 @@ public class ReviewAnalysisRunner {
 			System.out.println();
 			
 			System.out.println("The median age of positive reviews is " + ra.getMedianAgeOfPosReviews());
-			System.out.println("\n");
+			System.out.println();
 			
 			System.out.println("Model with best overall reviews in each class:");
 			ra.findModelWithKeywords(1);
-			System.out.println("\n");
+			System.out.println();
 			
 			System.out.println("Model with worst overall reviews in each class:");
 			ra.findModelWithKeywords(-1);
-			System.out.println("\n");
+			System.out.println();
 	
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Oops...Something went wrong with csvParser");
-		}
-	
+		}	
 	}
-
-    }
-
 }
