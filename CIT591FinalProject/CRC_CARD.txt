@@ -31,8 +31,12 @@ Collaborators: ReviewReader
 
 Class: ReviewAnalysisRunner
 Responsibilities: Run and output the final analysis.
-Collaborators: ReviewAnalysis, AnalysisResultFileWriter
+Collaborators: ReviewAnalysis, AnalysisResultFileWriter, Plots
 
 Class: AnalysisResultFileWriter
 Responsibilities: Write question and answer to our data analysis.
 Collaborator: ReviewAnalysis
+
+Class: Plots 
+Responsibilities: Generate graphs of review data (which includes outcome from Sentiment Analysis) and review analysis results and write the graphs into jpeg files
+Collaborator: ReviewReader, ReviewAnalysis
