@@ -414,5 +414,4 @@ public class ReviewAnalysis {
         }
         return maxID;
     }
-
 }

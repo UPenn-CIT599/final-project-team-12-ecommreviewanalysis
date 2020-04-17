@@ -73,7 +73,11 @@ public class ReviewReader {
 					String rawSentiments = record.get("Sentiments").substring(1, record.get("Sentiments").length() - 1);
 					String[] sentimentsInArray = rawSentiments.split(",");
 					ArrayList<String> sentiments = new ArrayList<>();
-					Collections.addAll(sentiments, sentimentsInArray);
+					for(String sentiment : sentimentsInArray) {
+						sentiments.add(sentiment.trim());
+					}
+					//Noticed there are white spaces generated when I ingest the data. trying to fix it.
+					//Collections.addAll(sentiments, sentimentsInArray);
 					int sentimentScore = Integer.parseInt(record.get("Sentiment Score"));
 					reviews.add(new Review(id, clothingId, age, title, reviewText, rating, recommendedInd,
 							positiveFeedbackCount, divisionName, departmentName, className, sentiments, sentimentScore));
