@@ -122,13 +122,14 @@ public class ReviewAnalysis {
 
     /**
      * for each clothing class, get the model(clothingId) that has the
-     * highest/lowest accumulated sentiment scores and get the top 5 keywords of
-     * that model print out List of className + clothingId + keywords[]
+     * highest/lowest accumulated sentiment scores 
+     * and get the top 5 keywords of that model 
+     * print out List of className + clothingId + keywords[]
      * 
-     * @param reviewType, 1 for best overall review (has highest sentiment score) -1
-     *                    for worst overall review (has lowest sentiment score)
+     * @param reviewType, 1 for best overall review (has highest sentiment score) 
+     *                    -for worst overall review (has lowest sentiment score)
      */
-    public void findModelWithKeywords(int reviewType) {
+    public ArrayList<String> findModelWithKeywords(int sentimentType) {
         HashMap<String, ArrayList<String>> classToClothingIDs = getClassToClothingIDs();
 
         String result = "";
@@ -144,25 +145,23 @@ public class ReviewAnalysis {
                 List<String> keywords = new ArrayList<String>();
                 for (String clothingID : clothingIDs) {
                     int score = getClothingIdToSentimentScore().get(clothingID);
-                    if (reviewType == 1 && score > maxScore) {
+                    if (sentimentType == 1 && score > maxScore) {
                         maxScore = score;
                         model = clothingID;
-                    } else if (reviewType == -1 && score < minScore) {
+                    } else if (sentimentType == -1 && score < minScore) {
                         minScore = score;
                         model = clothingID;
                     }
                 }
                 review = getModelToReviews().get(model);
                 keywords = getTopFiveKeyWords(review);
-                result = className + "," + model + "," + keywords;
+                result = String.format("%-18s%-6s%-50s", className, model, keywords);
                 results.add(result);
             }
         }
-        for (String r : results) {
-            System.out.println(r);
-        }
+        return results;
     }
-
+    
     /**
      * Helper method to reduce the redundancy in counting data element
      * 
@@ -181,8 +180,6 @@ public class ReviewAnalysis {
 
     /**
      * to get the HashMap ClassName to ClothingIDs(clothing model) for the
-     * clothingID list, sort based on sentiment score from low to high
-     * 
      * @return HashMap classToClothingIDs
      */
     public HashMap<String, ArrayList<String>> getClassToClothingIDs() {
@@ -255,10 +252,10 @@ public class ReviewAnalysis {
      * @param review
      * @return
      */
-    public List<String> getTopFiveKeyWords(String review) {
+    public List<String> getTopFiveKeyWords(String reviewTxt) {
 
         // Split into words, use Regex to remove punctuation and special characters
-        ArrayList<String> reviewWords = new ArrayList<>(Arrays.asList(review.toLowerCase().split("\\W+")));
+        ArrayList<String> reviewWords = new ArrayList<>(Arrays.asList(reviewTxt.toLowerCase().split("\\W+")));
 
         // Remove stop words (words that occur frequently but meaningless) and numbers
         ArrayList<String> stopWords = getStopWords();
