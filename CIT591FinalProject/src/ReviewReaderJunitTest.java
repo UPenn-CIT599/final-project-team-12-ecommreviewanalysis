@@ -107,10 +107,29 @@ public class ReviewReaderJunitTest {
 		
 		assertEquals(id0, idToSentiments.get("0"), "A single value sentiment does not work");
 		assertEquals(id39, idToSentiments.get("39"), "Multiple Sentiments insertion does not work.");
-		assertEquals(id92, idToSentiments.get("92"), "Null (empty) list is giving an error");
+		assertEquals(id92.isEmpty(), idToSentiments.get("92").isEmpty(), "Null (empty) list is giving an error");
+	}
+	
+	
+	/*
+	 * This test ist to ensure scoring we performed on the sentiment analysis
+	 * to ensure if  the scoring worked as we intended then outputed.
+	 */
+	@Test
+	public void testScores() {
+		HashMap<String, Integer> idToSentimentScores = new HashMap<>();
+		for( Review review : reviews_with_sentiments) {
+			String id = review.getId();
+			int sentimentScores = review.getSentimentScore();
+			idToSentimentScores.put(id, sentimentScores);
+		}
 		
+		assertEquals(0, idToSentimentScores.get("4"), "0 Scoring did not work!");
+		assertEquals(-7, idToSentimentScores.get("154"), "Negative scoring did not work!");
+		assertEquals(3, idToSentimentScores.get("120"), "Positive scoring did not work!");
 		
 	}
+	
 
 
 }
