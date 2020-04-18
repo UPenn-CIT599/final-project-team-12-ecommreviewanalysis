@@ -71,10 +71,13 @@ public class ReviewReader {
 				//So we need to be able to capture newly appended data columns : Sentiments and SentimentScore
 				if (isSecondary) {
 					String rawSentiments = record.get("Sentiments").substring(1, record.get("Sentiments").length() - 1);
-					String[] sentimentsInArray = rawSentiments.split(",");
 					ArrayList<String> sentiments = new ArrayList<>();
-					for(String sentiment : sentimentsInArray) {
-						sentiments.add(sentiment.trim());
+					//with csv output process, sometimes even null values have a single white space and two brackets.
+					if(rawSentiments.contains(",") || rawSentiments.length() > 3) {
+						String[] sentimentsInArray = rawSentiments.split(",");
+						for(String sentiment : sentimentsInArray) {
+							sentiments.add(sentiment.trim());
+						}
 					}
 					//Noticed there are white spaces generated when I ingest the data. trying to fix it.
 					//Collections.addAll(sentiments, sentimentsInArray);
@@ -98,7 +101,7 @@ public class ReviewReader {
 	public ArrayList<Review> getReviews() {
 		return reviews;
 	}
-	
+
 	public ArrayList<Review> getValidReviews(){
 		ArrayList<Review> validReviews = new ArrayList<Review>();
 		for(Review r : reviews) {

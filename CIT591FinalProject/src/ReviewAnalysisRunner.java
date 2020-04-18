@@ -48,7 +48,8 @@ public class ReviewAnalysisRunner {
             Plots plot = new Plots(newValidReviews);
             plot.plotHistogram1();
             plot.plotHistogram2();
-            plot.plotPieChart();
+            plot.plotPieChart(ra.getPositiveReviews().size(), ra.getNegativeReviews().size(),
+            		ra.getNeutralReviews().size());
 
         } catch (IOException e) {
             // TODO Auto-generated catch block

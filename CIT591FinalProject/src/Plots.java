@@ -34,29 +34,27 @@ public class Plots {
 
     /**
      * To get an arraylist of customer age for plotting histogram of customer age
-     * distribution
+     * distribution and other plots we might come up with.
      * 
      * @return an arraylist of customer age
      */
-    public ArrayList<Integer> getCustomerAge() {
+    private ArrayList<Integer> getCustomerAge() {
         ArrayList<Integer> customerAgeList = new ArrayList<Integer>();
         for (Review review : reviews) {
 
             int customerAge = review.getAge();
             customerAgeList.add(customerAge);
         }
-
         return customerAgeList;
-
     }
 
     /**
      * To get an arraylist of sentiment score for generating histogram of sentiment
-     * score distribution
+     * score distribution  and other plots we might come up with.
      * 
      * @return an arraylist of sentiment score
      */
-    public ArrayList<Integer> getSentimentScore() {
+    private ArrayList<Integer> getSentimentScore() {
         ArrayList<Integer> sentimentscoreList = new ArrayList<Integer>();
         for (Review review : reviews) {
 
@@ -125,20 +123,18 @@ public class Plots {
 
     }
 
-   
-
     /**
      * to generate piechart of positive,negative and neutral reviews and write it to
      * a jpeg file
      * 
      * @throws IOException
      */
-    public void plotPieChart() throws IOException {
+    public void plotPieChart(int PositiveReviews, int NegativeReviews, int NeutralReviews) throws IOException {
 
         DefaultPieDataset dataset2 = new DefaultPieDataset();
-        dataset2.setValue("Positive Reviews", 4075);
-        dataset2.setValue("Negative Reviews", 2672);
-        dataset2.setValue("Neutral Reviews", 15894);
+        dataset2.setValue("Positive Reviews", PositiveReviews);
+        dataset2.setValue("Negative Reviews", NegativeReviews);
+        dataset2.setValue("Neutral Reviews", NeutralReviews);
 
         JFreeChart chart = ChartFactory.createPieChart("Number Of Reviews", dataset2, true, true, false);
 
