@@ -16,7 +16,7 @@ public class ReviewAnalysisRunner {
 		 * We are splitting out the process because we want to look at the output file with Sentiment analysis outcome
 		 * being appended before we walk on the final data analysis.
 		 */
-
+		/*
 		ReviewReader rr = new ReviewReader();
 		//read the ecommerce input file.
 		rr.readFile();
@@ -29,18 +29,23 @@ public class ReviewAnalysisRunner {
 				new SentimentAnalysisOutputFileWriter(saor.getUpdatedReviews());
 		fileWriter.generateOutputFile();
 
-		/*
-		 * This second analysis will generate our final analysis output in txt file and also some plots from our analysis.
-		 */
-		//ReviewReader secondRR = new ReviewReader("Sentiment_Analysis_Output.csv", true);
+	
+		//This second analysis will generate our final analysis output in txt file and also some plots from our analysis.
+
+
 		ReviewReader secondRR = new ReviewReader(fileWriter.getOutputFileName(), true);
+		*/
+		
+	
+		ReviewReader secondRR = new ReviewReader("Sentiment_Analysis_Output.csv", true);
 
 		secondRR.readFile();
 		ArrayList<Review> newValidReviews = secondRR.getValidReviews();
 		ReviewAnalysis ra = new ReviewAnalysis(newValidReviews);
 		AnalysisResultFileWriter arfw = new AnalysisResultFileWriter();
 		ArrayList<String> report = new ArrayList<String>();
-
+		
+		/*
 		System.out.println("We are generating the analysis report for you...");
 		System.out.println("It may take a few minutes, thanks for your patience." + "\n");
 
@@ -80,6 +85,7 @@ public class ReviewAnalysisRunner {
 
 		System.out.println("Generating charts..." + "\n");
 
+*/
 		Plots plot = new Plots(newValidReviews);
 		
 		try {
@@ -87,6 +93,8 @@ public class ReviewAnalysisRunner {
 			plot.plotHistogram2();
 			plot.plotPieChart(ra.getPositiveReviews().size(), ra.getNegativeReviews().size(),
 					ra.getNeutralReviews().size());
+			plot.plotBarDeparmentToNumOfReviews(ra.getDepartmentToNumOfReview(ra.getNegativeReviews()), 
+					ra.getDepartmentToNumOfReview(ra.getNeutralReviews()), ra.getDepartmentToNumOfReview(ra.getPositiveReviews()) );
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

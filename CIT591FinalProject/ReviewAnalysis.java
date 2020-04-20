@@ -16,7 +16,7 @@ import java.util.Scanner;
  */
 public class ReviewAnalysis {
 
-	private ArrayList<Review> reviews;
+	public ArrayList<Review> reviews;
 	//this is the threshold we are using to determine Positive, Negative, and Neutral review.
 	private static final int REVIEW_SCORE_THRESHOLD = 2;
 
@@ -39,7 +39,7 @@ public class ReviewAnalysis {
 	public ArrayList<Review> getNegativeReviews() {
 		ArrayList<Review> negReviews = new ArrayList<Review>();
 		for (Review review : reviews) {
-			if (!review.getReviewText().isEmpty() && review.getSentimentScore() <= REVIEW_SCORE_THRESHOLD * -1) {
+			if (review.getSentimentScore() <= REVIEW_SCORE_THRESHOLD * -1) {
 				negReviews.add(review);
 			}
 		}
@@ -55,7 +55,7 @@ public class ReviewAnalysis {
 	public ArrayList<Review> getPositiveReviews() {
 		ArrayList<Review> posReviews = new ArrayList<Review>();
 		for (Review review : reviews) {
-			if (!review.getReviewText().isEmpty() && review.getSentimentScore() >= REVIEW_SCORE_THRESHOLD) {
+			if (review.getSentimentScore() >= REVIEW_SCORE_THRESHOLD) {
 				posReviews.add(review);
 			}
 		}
@@ -71,8 +71,7 @@ public class ReviewAnalysis {
 	public ArrayList<Review> getNeutralReviews() {
 		ArrayList<Review> neuReviews = new ArrayList<Review>();
 		for (Review review : reviews) {
-			if (!review.getReviewText().isEmpty()
-					&& (review.getSentimentScore() > (REVIEW_SCORE_THRESHOLD * -1) 
+			if ((review.getSentimentScore() > (REVIEW_SCORE_THRESHOLD * -1) 
 							&& review.getSentimentScore() < REVIEW_SCORE_THRESHOLD)) {
 				neuReviews.add(review);
 			}
@@ -155,30 +154,65 @@ public class ReviewAnalysis {
 
 		for (String className : classToClothingIDs.keySet()) {
 			ArrayList<String> clothingIDs = classToClothingIDs.get(className);
-			if (!className.equals("")) {
-				int maxScore = -999999;
-				int minScore = 999999;
-				String model = "";
-				String review = "";
-				List<String> keywords = new ArrayList<String>();
-				for (String clothingID : clothingIDs) {
-					int score = getClothingIdToSentimentScore().get(clothingID);
-					if (sentimentType == 1 && score > maxScore) {
-						maxScore = score;
-						model = clothingID;
-					} else if (sentimentType == -1 && score < minScore) {
-						minScore = score;
-						model = clothingID;
-					}
+			int maxScore = -999999;
+			int minScore = 999999;
+			String model = "";
+			String review = "";
+			List<String> keywords = new ArrayList<String>();
+			for (String clothingID : clothingIDs) {
+				int score = getClothingIdToSentimentScore().get(clothingID);
+				if (sentimentType == 1 && score > maxScore) {
+					maxScore = score;
+					model = clothingID;
+				} else if (sentimentType == -1 && score < minScore) {
+					minScore = score;
+					model = clothingID;
 				}
-				review = getModelToReviews().get(model);
-				keywords = getTopFiveKeyWords(review);
-				result = String.format("%-18s%-6s%-50s", className, model, keywords);
-				results.add(result);
 			}
+			review = getModelToReviews().get(model);
+			keywords = getTopFiveKeyWords(review);
+			result = String.format("%-18s%-6s%-50s", className, model, keywords);
+			results.add(result);
 		}
 		return results;
 	}
+	
+	/**
+	 * to get the number of positive reviews, negative reviews and neutral reviews
+	 * 
+	 * @return String "positive reviews:n1; negative reviews:n2; neutral reviews:n3"
+	 */
+	public String numberOfReviews() {
+		ArrayList<Review> posReviews = getPositiveReviews();
+		int countPos = posReviews.size();
+		ArrayList<Review> negReviews = getNegativeReviews();
+		int countNeg = negReviews.size();
+		ArrayList<Review> neuReviews = getNeutralReviews();
+		int countNeu = neuReviews.size();
+		return ("PositiveReviews:" + countPos + ";NegativeReviews:" + countNeg + ";NeutralReviews:" + countNeu);
+	}
+	
+	/**
+	 * to get the average age of customers of the most popular clothingID
+	 * (clothingID with the most number of Reviews)
+	 * 
+	 * @return average age of customers
+	 */
+
+	public double averageAgeOfMostPopular() {
+		return getAverageAge(getProductWithMostReviews());
+	}
+
+	/**
+	 * to get the median age of customers of the most popular clothingID (clothingID
+	 * with the most number of Reviews)
+	 * 
+	 * @return median age of customers
+	 */
+	public double medianAgeOfMostPopular() {
+		return getMedianAge(getProductWithMostReviews());
+	}
+
 
 	/**
 	 * Helper method to reduce the redundancy in counting data element
@@ -323,21 +357,6 @@ public class ReviewAnalysis {
 	}
 
 	/**
-	 * to get the number of positive reviews, negative reviews and neutral reviews
-	 * 
-	 * @return String "positive reviews:n1; negative reviews:n2; neutral reviews:n3"
-	 */
-	public String numberOfReviews() {
-		ArrayList<Review> posReviews = getPositiveReviews();
-		int countPos = posReviews.size();
-		ArrayList<Review> negReviews = getNegativeReviews();
-		int countNeg = negReviews.size();
-		ArrayList<Review> neuReviews = getNeutralReviews();
-		int countNeu = neuReviews.size();
-		return ("PositiveReviews:" + countPos + ";NegativeReviews:" + countNeg + ";NeutralReviews:" + countNeu);
-	}
-
-	/**
 	 * This method will create Hash map of ClothingID to Number of Reviews
 	 * @return   Hash map of ClothingID to Number of Reviews
 	 */
@@ -376,30 +395,17 @@ public class ReviewAnalysis {
 		}
 		return mostReviewedProduct;
 	}
-
 	
-
-	/**
-	 * to get the average age of customers of the most popular clothingID
-	 * (clothingID with the most number of Reviews)
-	 * 
-	 * @return average age of customers
-	 */
-
-	public double averageAgeOfMostPopular() {
-		return getAverageAge(getProductWithMostReviews());
+	public HashMap<String, Integer> getDepartmentToNumOfReview(ArrayList<Review> reviews){
+		
+		HashMap<String, Integer> departmentToNumOfReview = new HashMap<>();
+		for (Review r : reviews ) {
+			String department = r.getDepartmentName();
+			incrementHashMapPerElement(departmentToNumOfReview, department);
+		}
+		return departmentToNumOfReview;
 	}
-
-	/**
-	 * to get the median age of customers of the most popular clothingID (clothingID
-	 * with the most number of Reviews)
-	 * 
-	 * @return median age of customers
-	 */
-	public double medianAgeOfMostPopular() {
-		return getMedianAge(getProductWithMostReviews());
-	}
-
+	
 	/**
 	 * given a HashMap<String, Integer>, return the String whose Integer Value is
 	 * maximum
