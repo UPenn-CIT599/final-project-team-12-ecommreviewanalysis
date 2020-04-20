@@ -1,4 +1,3 @@
-import java.io.IOException;
 import java.util.ArrayList;
 /**
  * This is the tester class to ensure if things are working correctly as we designed.

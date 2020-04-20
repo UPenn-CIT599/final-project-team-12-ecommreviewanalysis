@@ -355,7 +355,6 @@ public class ReviewAnalysis {
 	 * @return clothingID in String
 	 */
 	public String getClothingIDWithMostReviews() {
-		ArrayList<Review> productWithMostReviews = getProductWithMostReviews();
 		HashMap<String, Integer> clothingIDToNumOfReviews = getClothingIDtoNbrOfReviews();
 		return findMax(clothingIDToNumOfReviews);
 	}
@@ -368,7 +367,6 @@ public class ReviewAnalysis {
 	 */
 	public ArrayList<Review> getProductWithMostReviews() {
 		ArrayList<Review> mostReviewedProduct = new ArrayList<>();
-		HashMap<String, Integer> clothingIDToNumOfReviews = getClothingIDtoNbrOfReviews();
 		String maxClothingID = getClothingIDWithMostReviews();
 
 		for (Review r : reviews) {

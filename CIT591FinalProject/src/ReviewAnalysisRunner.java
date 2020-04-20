@@ -1,6 +1,5 @@
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * This is for us to run our different java code class in one main location executing sequence of actions we need.
