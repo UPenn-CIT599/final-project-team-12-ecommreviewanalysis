@@ -11,8 +11,6 @@ import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.statistics.HistogramDataset;
 import org.jfree.ui.ApplicationFrame;
 
-import com.sun.tools.javac.launcher.Main;
-
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
