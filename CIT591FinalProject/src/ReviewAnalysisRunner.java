@@ -52,7 +52,7 @@ public class ReviewAnalysisRunner {
 			String result2 = "The median age of positive reviews is " + ra.getMedianAgeOfPosReviews();
 			report.add(result2 + "\n");
 
-			report.add("Clothing ID " + ra.getProductWithMostReviews().get(0).getClothingId()
+			report.add("Clothing ID " + ra.getClothingIDWithMostReviews()
 					+ " has the most number of reviews.");
 			report.add( "The average age of customers for the most popular item is " 
 					+ ra.averageAgeOfMostPopular());

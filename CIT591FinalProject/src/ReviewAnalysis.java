@@ -338,25 +338,38 @@ public class ReviewAnalysis {
 	}
 
 	/**
-	 * to get the clothingID with the most number of reviews
+	 * This method will create Hash map of ClothingID to Number of Reviews
+	 * @return   Hash map of ClothingID to Number of Reviews
+	 */
+	private HashMap<String, Integer> getClothingIDtoNbrOfReviews(){
+		HashMap<String, Integer> clothingIDToNumOfReviews = new HashMap<String, Integer>();
+		
+		for (int i = 0; i < reviews.size(); i++) {
+			incrementHashMapPerElement(clothingIDToNumOfReviews, reviews.get(i).getClothingId());
+		}
+		return clothingIDToNumOfReviews;
+	}
+	
+	/**
+	 * This will return the Clothing ID with the most reviews.
+	 * @return clothingID in String
+	 */
+	public String getClothingIDWithMostReviews() {
+		ArrayList<Review> productWithMostReviews = getProductWithMostReviews();
+		HashMap<String, Integer> clothingIDToNumOfReviews = getClothingIDtoNbrOfReviews();
+		return findMax(clothingIDToNumOfReviews);
+	}
+	
+	/**
+	 * This method will return the array list of reviews with most popular (the one with most reviews)
+	 * item.
 	 *
-	 * @return clothingID of the most number of reviews
+	 * @return ArrayList of Reviews associated with Clothing ID that has the most reviews.
 	 */
 	public ArrayList<Review> getProductWithMostReviews() {
 		ArrayList<Review> mostReviewedProduct = new ArrayList<>();
-		HashMap<String, Integer> clothingIDToNumOfReviews = new HashMap<String, Integer>();
-		String maxClothingID = null;
-		
-		for (int i = 0; i < reviews.size(); i++) {
-			Integer num = clothingIDToNumOfReviews.get(reviews.get(i).getClothingId());
-			if (num == null) {
-				num = 1;
-			} else {
-				num = num + 1;
-			}
-			clothingIDToNumOfReviews.put(reviews.get(i).getClothingId(), num);
-		}
-		maxClothingID = findMax(clothingIDToNumOfReviews);
+		HashMap<String, Integer> clothingIDToNumOfReviews = getClothingIDtoNbrOfReviews();
+		String maxClothingID = getClothingIDWithMostReviews();
 
 		for (Review r : reviews) {
 			if (r.getClothingId().equals(maxClothingID)) {
@@ -365,6 +378,8 @@ public class ReviewAnalysis {
 		}
 		return mostReviewedProduct;
 	}
+
+	
 
 	/**
 	 * to get the average age of customers of the most popular clothingID

@@ -50,13 +50,16 @@ public class Tester {
 
 		fileWriter.generateOutputFile();
 		
+//		
+//		for(Review review: reviews) {
+//			System.out.print(review.getId() + " ");
+//			System.out.print(review.getSentiments() + " ");
+//			System.out.print(review.getSentimentScore()+ " ");
+//			System.out.println();
+//		}
 		
-		for(Review review: reviews) {
-			System.out.print(review.getId() + " ");
-			System.out.print(review.getSentiments() + " ");
-			System.out.print(review.getSentimentScore()+ " ");
-			System.out.println();
-		}
+		
+		
 	}
 
 }

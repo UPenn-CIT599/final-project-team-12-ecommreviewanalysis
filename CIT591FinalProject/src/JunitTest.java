@@ -1,24 +1,21 @@
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Scanner;
 
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.jupiter.api.Test;
-
-/*
- * Key to data analysis is to get the input data in precise manner.
- * We created this test to ensure our data extraction process.
- * We opened our original csv file in Excel and will validate the contents 
- * between our Review class and csv file.
+/**
+ * We are performing Junit tests on cases that will cover following classes :
+ * ReviewReader, SentimentAnalsisOnReviews, ReviewAnaylsis, Review. 
+ * 
+ * @author Cindy, Xinyi, Yong-Jin
+ *
  */
-public class ReviewReaderJunitTest {
+class JunitTest {
+
 	static ReviewReader reviewReader;
 	static ArrayList<Review> reviews;
 	//After we run the sentiment scoring. We will generate the output file
@@ -26,6 +23,7 @@ public class ReviewReaderJunitTest {
 	//We will try to read this secondary file in order to make sure it works.
 	static ReviewReader secondReviewReader;
 	static ArrayList<Review> reviews_with_sentiments;
+	static ReviewAnalysis reviewAnalysis;
 
 	//test if the # of records match with what's in csv file.
 	@Test
@@ -117,11 +115,18 @@ public class ReviewReaderJunitTest {
 			int sentimentScores = review.getSentimentScore();
 			idToSentimentScores.put(id, sentimentScores);
 		}
+		
 		assertEquals(0, idToSentimentScores.get("4"), "0 Scoring did not work!");
 		assertEquals(-7, idToSentimentScores.get("154"), "Negative scoring did not work!");
 		assertEquals(3, idToSentimentScores.get("120"), "Positive scoring did not work!");
 	}
 	
-
-
+	@Test
+	public void testReviewAnalysisMostReviewedProduct() {
+		reviewAnalysis = new ReviewAnalysis(reviews_with_sentiments);
+		String mostReviewedProductId = reviewAnalysis.getClothingIDWithMostReviews();
+		
+		assertEquals("1078",mostReviewedProductId.trim() );
+	}
+	
 }
