@@ -102,7 +102,7 @@ public class ReviewReader {
 	public ArrayList<Review> getValidReviews(){
 		ArrayList<Review> validReviews = new ArrayList<Review>();
 		for(Review r : reviews) {
-			if(!r.getReviewText().equals("")) {
+			if(!r.getReviewText().equals("") && !r.getClassName().equals("") && !r.getDepartmentName().equals("")) {
 				validReviews.add(r);
 			}
 		}
