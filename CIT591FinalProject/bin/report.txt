@@ -1,0 +1,53 @@
+The average age of positive reviews is 43.533489203685875
+
+The median age of positive reviews is 42.0
+
+Clothing ID 1078 has the most number of reviews.
+The average age of customers for the most popular item is 42.71529888551165
+The median age of customers for the most popular item is 41.0
+
+In each class, the model with best reviews and the keywords in its reviews are:
+Fine gauge        895   [sweater, color, fit, top, wear]                  
+Chemises          10    [ankle, ballet, boots, comfortable, dress]        
+Layering          166   [good, perfect, soft, beautiful, beautifully]     
+Intimates         37    [beautiful, black, small, back, body]             
+Blouses           850   [top, size, blouse, wear, fit]                    
+Outerwear         1123  [jacket, leather, color, size, soft]              
+Trend             551   [embroidery, jacket, fits, heavy, medium]         
+Pants             1056  [pants, fit, size, color, pair]                   
+Jeans             1022  [jeans, fit, ag, size, pair]                      
+Swim              252   [suit, swimsuit, bathing, comfortable, navy]      
+Dresses           1078  [dress, size, fit, fabric, wear]                  
+Knits             872   [top, shirt, wear, fabric, size]                  
+Casual bottoms    45    [pants, capris, cute, design, full]               
+Sleep             501   [feel, robe, nice, makes, pretty]                 
+Skirts            1008  [skirt, size, waist, fit, fabric]                 
+Shorts            717   [shorts, color, comfortable, fit, flattering]     
+Lounge            194   [jacket, size, xs, runs, small]                   
+Legwear           144   [tights, quality, thick, color, favorite]         
+Jackets           984   [jacket, fit, color, small, denim]                
+Sweaters          936   [sweater, color, wear, soft, size]                
+
+In each class, the model with worst reviews and the keywords in its reviews are:
+Fine gauge        912   [sweater, size, cute, didn, fit]                  
+Chemises          10    [ankle, ballet, boots, comfortable, dress]        
+Layering          520   [tank, small, black, cut, colors]                 
+Intimates         368   [itchy, support, cup, bra, bralettes]             
+Blouses           844   [top, size, back, beautiful, fit]                 
+Outerwear         1121  [coat, trench, size, fabric, xs]                  
+Trend             569   [sides, gathered, balloons, pleated, top]         
+Pants             1046  [pants, waist, size, comfortable, large]          
+Jeans             1039  [rise, denim, waist, wash, color]                 
+Swim              514   [size, cup, suit, design, small]                  
+Dresses           1079  [dress, size, fit, buttons, fabric]               
+Knits             858   [top, wear, size, fit, small]                     
+Casual bottoms    45    [pants, capris, cute, design, full]               
+Sleep             170   [wear, pretty, comfortable, dress, feminine]      
+Skirts            1016  [skirt, hips, size, small, waist]                 
+Shorts            577   [fit, bottom, romper, short, xs]                  
+Lounge            652   [medium, small, fit, worn, elastic]               
+Legwear           229   [elastic, leggings, waist, large, small]          
+Jackets           974   [jacket, size, small, back, fabric]               
+Sweaters          927   [sweater, soft, size, wear, color]                
+
+PositiveReviews:7271;NegativeReviews:5025;NeutralReviews:10332
