@@ -20,18 +20,13 @@ Class: SentimentAnalysisOutputFileWriter
 Responsibilities: Output the result from SentimentAnalysis as csv file including in form of Review Data.
 Collaborator: None
 
-Class: SentimentAnalysisRunner
-Responsibilities: Run SentimentAnalysis on our input file then generate the output file which can be used for the further analysis.
-Collaborator: SentimentAnalyzer, SentimentAnalysisOutputFileWriter, SentimentAnalysisOnReviews
-
-
 Class: ReviewAnalysis 
 Responsibilities: Run final analysis on Review data (which includes outcome from Sentiment Analysis) 
 Collaborators: ReviewReader
 
 Class: ReviewAnalysisRunner
-Responsibilities: Run and output the final analysis.
-Collaborators: ReviewAnalysis, AnalysisResultFileWriter, Plots
+Responsibilities: Run SentimentAnalysis on our input file then generate the output file which can be used for the further analysis..Run and output the final analysis.
+Collaborators:  SentimentAnalysisOutputFileWriter, SentimentAnalysisOnReviews, ReviewAnalysis, AnalysisResultFileWriter, Plots
 
 Class: AnalysisResultFileWriter
 Responsibilities: Write question and answer to our data analysis.

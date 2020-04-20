@@ -70,15 +70,9 @@ public class ReviewReaderJunitTest {
 	@Test
 	public void testNumberOfReviews2() {
 		secondReviewReader = new ReviewReader("Sentiment_Analysis_Output.csv", true);
-		//reviews_with_sentiments = new ArrayList<Review>();
-		try {
-			secondReviewReader.readFile();
-			reviews_with_sentiments = secondReviewReader.getReviews();
-			assertEquals(23486, reviews_with_sentiments.size());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		secondReviewReader.readFile();
+		reviews_with_sentiments = secondReviewReader.getReviews();
+		assertEquals(23486, reviews_with_sentiments.size());
 	}
 	/*
 	 * With this output, we want to make sure if the both sentiments 

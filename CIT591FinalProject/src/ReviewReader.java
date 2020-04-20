@@ -43,7 +43,7 @@ public class ReviewReader {
 	 * This one mainly reads the CSV file.
 	 * @throws IOException
 	 */
-	public void readFile() throws IOException {
+	public void readFile() {
 		try {
 			Reader in = new FileReader(inputFileName);
 			Iterable<CSVRecord> records = CSVFormat.EXCEL.withHeader().parse(in);
@@ -92,7 +92,7 @@ public class ReviewReader {
 				}
 			}
 
-		} catch (FileNotFoundException e) {
+		} catch (IOException e) {
 			System.out.println("File Not Found. Existing...");
 		}
 

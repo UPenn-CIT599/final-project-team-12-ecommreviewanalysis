@@ -19,7 +19,7 @@ import org.apache.commons.csv.CSVPrinter;
 public class SentimentAnalysisOutputFileWriter {
 	private ArrayList<Review> reviews;
 
-	private static final String OUTPUT_FILE_PATH = "Sentiment_Analysis_Output.csv";
+	private String outputFileName = "Sentiment_Analysis_Output.csv";
 
 	public SentimentAnalysisOutputFileWriter(ArrayList<Review> reviews){
 		this.reviews = reviews;
@@ -27,7 +27,7 @@ public class SentimentAnalysisOutputFileWriter {
 
 	public void generateOutputFile() {
 		try(
-				BufferedWriter writer = Files.newBufferedWriter(Paths.get(OUTPUT_FILE_PATH));
+				BufferedWriter writer = Files.newBufferedWriter(Paths.get(outputFileName));
 				CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT.withHeader(
 						"ID", "Clothing ID", "Age", "Title", "Review Text", "Rating"
 						,"Recommended IND", "Positive Feedback Count", "Division Name"
@@ -59,6 +59,10 @@ public class SentimentAnalysisOutputFileWriter {
 		}
 
 
+	}
+	
+	public String getOutputFileName() {
+		return outputFileName;
 	}
 
 }
