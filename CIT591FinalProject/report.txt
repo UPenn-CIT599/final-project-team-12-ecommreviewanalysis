@@ -1,4 +1,4 @@
-The average age of positive reviews is 43.53016352892676
+The average age of positive reviews is 43.533489203685875
 
 The median age of positive reviews is 42.0
 
@@ -50,4 +50,4 @@ Legwear           229   [elastic, leggings, waist, large, small]
 Jackets           974   [jacket, size, small, back, fabric]               
 Sweaters          927   [sweater, soft, size, wear, color]                
 
-PositiveReviews:7277;NegativeReviews:5025;NeutralReviews:10339
+PositiveReviews:7271;NegativeReviews:5025;NeutralReviews:10332
