@@ -8,6 +8,12 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+
+/*
+ * This is our junit testing on overall project analysis.
+ * This covers the following classes :ReviewReader, ReviewAnalysis, SentimentAnalysisOnReview, 
+ * SentimentAnalysisOutputFileWriter.
+ */
 class ProjectJunitTest {
 
 
