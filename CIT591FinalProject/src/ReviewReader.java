@@ -38,6 +38,8 @@ public class ReviewReader {
 
 	/**
 	 * This one mainly reads the CSV file.
+	 * Once sentimentAnalysis output file has been generated, the method can be used again
+	 * to ingest the information from the output file.
 	 * @throws IOException
 	 */
 	public void readFile() {
@@ -98,7 +100,11 @@ public class ReviewReader {
 	public ArrayList<Review> getReviews() {
 		return reviews;
 	}
-
+	
+	/**
+	 * This method derives only reviews that contains texts on review section.
+	 * @return
+	 */
 	public ArrayList<Review> getValidReviews(){
 		ArrayList<Review> validReviews = new ArrayList<Review>();
 		for(Review r : reviews) {

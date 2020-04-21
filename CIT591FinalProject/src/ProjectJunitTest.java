@@ -7,23 +7,19 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
-/**
- * We are performing Junit tests on cases that will cover following classes :
- * ReviewReader, SentimentAnalsisOnReviews, ReviewAnaylsis, Review. 
- * 
- * @author Cindy, Xinyi, Yong-Jin
- *
- */
-class JunitTest {
 
-	static ReviewReader reviewReader;
-	static ArrayList<Review> reviews;
+class ProjectJunitTest {
+
+
+	private static ReviewReader reviewReader;
+	private static ArrayList<Review> reviews;
 	//After we run the sentiment scoring. We will generate the output file
 	//due to the long running time sentiment analyzer takes.
 	//We will try to read this secondary file in order to make sure it works.
-	static ReviewReader secondReviewReader;
-	static ArrayList<Review> reviews_with_sentiments;
-	static ReviewAnalysis reviewAnalysis;
+	private static ReviewReader secondReviewReader;
+	private static ArrayList<Review> reviews_with_sentiments;
+	private static ReviewAnalysis reviewAnalysis;
+	private ArrayList<Review> newValidReviews;
 
 	//test if the # of records match with what's in csv file.
 	@Test
@@ -121,12 +117,54 @@ class JunitTest {
 		assertEquals(3, idToSentimentScores.get("120"), "Positive scoring did not work!");
 	}
 	
+	/*
+	 * Test review analysis algorithm to get the clothingId with most reviews.
+	 */
 	@Test
-	public void testReviewAnalysisMostReviewedProduct() {
-		reviewAnalysis = new ReviewAnalysis(reviews_with_sentiments);
-		String mostReviewedProductId = reviewAnalysis.getClothingIDWithMostReviews();
+	public void testAnalysisOnProductWithMostReviews() {
+
+		newValidReviews = secondReviewReader.getValidReviews();
+		reviewAnalysis= new ReviewAnalysis(newValidReviews);
+		String itemWithMostReviews = reviewAnalysis.getClothingIDWithMostReviews();
 		
-		assertEquals("1078",mostReviewedProductId.trim() );
+		assertEquals("1078",itemWithMostReviews);
+		
 	}
 	
+	/**
+	 * This is a helper method from ReviewAnalysis class.
+	 * Since this is helper method with accessor being private. We are pasting the function code
+	 * here.
+	 * given a HashMap<String, Integer>, return the String whose Integer Value is
+	 * maximum
+	 * 
+	 * @param hashmap
+	 * @return String with maximum Integer value
+	 */
+	private static String findMax(HashMap<String, Integer> hashmap) {
+		int maxCount = -999;
+		String maxID = null;
+		for (String key : hashmap.keySet()) {
+			if (maxCount < hashmap.get(key)) {
+				maxCount = hashmap.get(key);
+				maxID = key;
+			}
+		}
+		return maxID;
+	}
+	
+	/**
+	 * Testing findMax function
+	 */
+	@Test
+	public void testFindMaxFunction() {
+		HashMap<String, Integer> toBeTested = new HashMap<>();
+		toBeTested.put("lowest", -5);
+		toBeTested.put("Middle", 0);
+		toBeTested.put("Highest", 10);
+		
+		String maxKey = findMax(toBeTested);
+		assertEquals("Highest", maxKey);
+	}
+
 }
