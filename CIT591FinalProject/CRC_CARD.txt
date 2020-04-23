@@ -20,13 +20,18 @@ Class: SentimentAnalysisOutputFileWriter
 Responsibilities: Output the result from SentimentAnalysis as csv file including in form of Review Data.
 Collaborator: None
 
+Class: SentimentAnalysisRunner
+Responsibilities: Read the input file ("Womens Clothing E-Commerce Reviews.csv"), run sentiment analysis getting sentiments and sentiment scores,
+				Then output the result in csv format so we can get used for final data analysis.
+Collaborator: ReviewReader, SentimentAnalysisOnReviews
+
 Class: ReviewAnalysis 
 Responsibilities: Run final analysis on Review data (which includes outcome from Sentiment Analysis) 
 Collaborators: ReviewReader
 
 Class: ReviewAnalysisRunner
 Responsibilities: Run SentimentAnalysis on our input file then generate the output file which can be used for the further analysis..Run and output the final analysis.
-Collaborators:  SentimentAnalysisOutputFileWriter, SentimentAnalysisOnReviews, ReviewAnalysis, AnalysisResultFileWriter, Plots
+Collaborators:   ReviewReader, ReviewAnalysis, AnalysisResultFileWriter, Plots
 
 Class: AnalysisResultFileWriter
 Responsibilities: Write question and answer to our data analysis.

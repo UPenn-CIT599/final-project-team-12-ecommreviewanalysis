@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 /**
  * This block of Code is used to run the Sentiment analysis and create the output file for
- * OUr secondary data analysis with Sentiment data.
+ * Our first data analysis with Sentiment data.
  * We are splitting out the process because we want to look at the output file with Sentiment
  * analysis outcome being appended before we walk on the final data analysis.
  * @author Xinyi, Xiting, Yong-Jin

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 /**
  * This is for us to run our different java code class in one main location executing sequence of actions we need.
  * We will read the data, analyze, and output the data over here.
+ * This one runs the analysis on the output file resulted from SentimentAnalysis so we can use Sentiment data.
  * @author YongJin, Xinyi, Xiting
  *
  */
