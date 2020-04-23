@@ -47,7 +47,7 @@ public class Tester {
 		SentimentAnalysisOutputFileWriter fileWriter =
 				new SentimentAnalysisOutputFileWriter(saor.getUpdatedReviews());
 
-		fileWriter.generateOutputFile();
+		fileWriter.writeOutputFile();
 		
 //		
 //		for(Review review: reviews) {

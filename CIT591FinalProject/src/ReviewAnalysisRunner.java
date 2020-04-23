@@ -10,35 +10,16 @@ import java.util.ArrayList;
 public class ReviewAnalysisRunner {
 
 	public static void main(String[] args) {
-		/*
-		 * This first block of Code is used to run the Sentiment analysis and create the output file for
-		 * our secondary data analysis with Sentiment data.
-		 * We are splitting out the process because we want to look at the output file with Sentiment analysis outcome
-		 * being appended before we walk on the final data analysis.
-		 */
-	
-		ReviewReader rr = new ReviewReader();
-		//read the ecommerce input file.
-		rr.readFile();
-		ArrayList<Review> reviews = rr.getReviews();
-		//Run SentimentAnalysis on this review.
-		SentimentAnalysisOnReviews saor = new SentimentAnalysisOnReviews(reviews);
-		saor.runSentimentAnalysis();
-		//Generate output file with Sentiment Analysis results.
-		SentimentAnalysisOutputFileWriter fileWriter =
-				new SentimentAnalysisOutputFileWriter(saor.getUpdatedReviews());
-		fileWriter.generateOutputFile();
 
-	
 		//This second analysis will generate our final analysis output in txt file and also some plots from our analysis.
-		ReviewReader secondRR = new ReviewReader(fileWriter.getOutputFileName(), true);
+		ReviewReader secondRR = new ReviewReader("Sentiment_Analysis_Output.csv", true);
 	
 		//ReviewReader secondRR = new ReviewReader("Sentiment_Analysis_Output.csv", true);
 
 		secondRR.readFile();
 		ArrayList<Review> newValidReviews = secondRR.getValidReviews();
 		ReviewAnalysis ra = new ReviewAnalysis(newValidReviews);
-		AnalysisResultFileWriter arfw = new AnalysisResultFileWriter();
+		
 		ArrayList<String> report = new ArrayList<String>();
 	
 		System.out.println("We are generating the analysis report for you...");
@@ -73,8 +54,10 @@ public class ReviewAnalysisRunner {
 		report.add("");
 
 		report.add(ra.numberOfReviews());
-
-		arfw.writeReport(report);
+		
+		AnalysisResultFileWriter arfw = new AnalysisResultFileWriter(report);
+		
+		arfw.writeOutputFile();
 
 		System.out.println("Report is ready!" + "\n");
 

@@ -14,7 +14,7 @@ import org.apache.commons.csv.CSVPrinter;
  * @author Xiting, YongJin, Xinyi
  *
  */
-public class SentimentAnalysisOutputFileWriter {
+public class SentimentAnalysisOutputFileWriter implements FileWriter {
 	private ArrayList<Review> reviews;
 
 	private String outputFileName = "Sentiment_Analysis_Output.csv";
@@ -23,7 +23,7 @@ public class SentimentAnalysisOutputFileWriter {
 		this.reviews = reviews;
 	}
 
-	public void generateOutputFile() {
+	public void writeOutputFile() {
 		try(
 				BufferedWriter writer = Files.newBufferedWriter(Paths.get(outputFileName));
 				CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT.withHeader(
@@ -49,18 +49,10 @@ public class SentimentAnalysisOutputFileWriter {
 			//for the reminder
 			csvPrinter.flush();
 
-
-
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-
-	}
-	
-	public String getOutputFileName() {
-		return outputFileName;
 	}
 
 }
