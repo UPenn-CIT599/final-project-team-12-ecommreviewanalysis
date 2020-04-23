@@ -26,8 +26,8 @@ class ProjectJunitTest {
     // We will try to read this secondary file in order to make sure it works.
     static ReviewReader secondReviewReader;
     static ArrayList<Review> reviews_with_sentiments;
-     static ArrayList<Review> newValidReviews;
-     static ReviewAnalysis reviewAnalysis = new ReviewAnalysis(newValidReviews);
+    static ArrayList<Review> newValidReviews;
+    static ReviewAnalysis reviewAnalysis = new ReviewAnalysis(newValidReviews);
    
     
   //  @BeforeClass
@@ -297,6 +297,13 @@ class ProjectJunitTest {
         assertEquals(1, array[0]);
         assertEquals(2, array[1]);
         assertEquals(3, array[2]);
+    }
+    
+    @Test
+    public void testClassToClothingIds() {
+    	HashMap<String, ArrayList<String>> classToClothingIDs = new HashMap<>();
+    	ArrayList<String> clothingIds = classToClothingIDs.get("Chemises");
+    	assertEquals("10", clothingIds.get(0));
     }
 
 
