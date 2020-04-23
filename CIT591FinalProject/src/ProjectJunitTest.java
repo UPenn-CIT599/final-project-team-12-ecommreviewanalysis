@@ -3,6 +3,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -17,29 +18,31 @@ import org.junit.jupiter.api.Test;
 class ProjectJunitTest {
 
 
-	private static ReviewReader reviewReader;
-	private static ArrayList<Review> reviews;
+	private ReviewReader reviewReader;
+	private ArrayList<Review> reviews;
 	//After we run the sentiment scoring. We will generate the output file
 	//due to the long running time sentiment analyzer takes.
 	//We will try to read this secondary file in order to make sure it works.
-	private static ReviewReader secondReviewReader;
-	private static ArrayList<Review> reviews_with_sentiments;
-	private static ReviewAnalysis reviewAnalysis;
-	private static ArrayList<Review> newValidReviews;
+	private ReviewReader secondReviewReader;
+	private ArrayList<Review> reviews_with_sentiments;
+	private ReviewAnalysis reviewAnalysis;
+	private ArrayList<Review> newValidReviews;
 
 	
 	
 	
 	private ArrayList<Review> getTestReviews() {
-	        ArrayList<Review> testReviews = new ArrayList<Review>();
-	        ArrayList<String> alist=new ArrayList<String>();
-	        Review review1= new Review("0","767",33,"Absolutely wonderful","silk and sexy and comfortable",4, true, 0,"Initmates","Intimate","Intimates",alist,2);
-	        Review review2= new Review("0","767",34,"Absolutely wonderful","silk and sexy and comfortable",4, true, 0,"Initmates","Intimate","Intimates",alist,2);
-	        Review review3= new Review("0","767",35,"Absolutely wonderful","silk and sexy and comfortable",4, true, 0,"Initmates","Intimate","Intimates",alist,2);
-	        testReviews.add(review1);
-	        testReviews.add(review2);
-	        testReviews.add(review3);
+		 ArrayList<Review> testReviews = new ArrayList<Review>();
+		 ArrayList<String> alist=new ArrayList<String>();
+	     Review review1= new Review("0","767",33,"Absolutely wonderful","silk and sexy and comfortable",4, true, 0,"Initmates","Intimate","Intimates",alist,2);
+	     Review review2= new Review("0","734",34,"Absolutely wonderful","silk and sexy and comfortable",4, true, 0,"Initmates","Intimate","Intimates",alist,2);
+	     Review review3= new Review("0","1207",35,"Absolutely wonderful","silk and sexy and comfortable",4, true, 0,"Dresses","Dresses","Dresses",alist,2);
+	     testReviews.add(review1);
+	     testReviews.add(review2);
+	     testReviews.add(review3);
+	      
 	    return testReviews;
+	       
 	}
 	
 
@@ -163,7 +166,7 @@ class ProjectJunitTest {
 	 * @param hashmap
 	 * @return String with maximum Integer value
 	 */
-	private static String findMax(HashMap<String, Integer> hashmap) {
+	private String findMax(HashMap<String, Integer> hashmap) {
 		int maxCount = -999;
 		String maxID = null;
 		for (String key : hashmap.keySet()) {
@@ -179,7 +182,7 @@ class ProjectJunitTest {
 	 * Testing findMax function
 	 */
 	@Test
-	public static void testFindMaxFunction() {
+	public void testFindMaxFunction() {
 		HashMap<String, Integer> toBeTested = new HashMap<>();
 		toBeTested.put("lowest", -5);
 		toBeTested.put("Middle", 0);
@@ -190,7 +193,7 @@ class ProjectJunitTest {
 	}
 	
 	@Test
-	public static void testGetTopFiveKeyWords() {
+	public void testGetTopFiveKeyWords() {
 		String testTxt = "I love love sweater sweater, black black black, small 'small' small"
 				+ "small. test test test 2 test test would but it again. ";
 		String topKeyWord = reviewAnalysis.getTopFiveKeyWords(testTxt).get(0);
@@ -198,12 +201,81 @@ class ProjectJunitTest {
 	}
 	
 	@Test
-	public static void testGetNegativeRevierws() {
+	public void testGetNegativeRevierws() {
 		ArrayList<Review> negativeReviews = reviewAnalysis.getNegativeReviews();
 		assertEquals(5025,negativeReviews.size());
 	}
 	
+	/**
+	 * This helper method is to get the average age of ArrayList for other analysis classes.
+	 * * Since this is helper method with accessor being private. We are pasting the function code
+	 * here.
+	 * @param ArrayList of reviews 
+	 * @return average age 
+	 */
+	private double getAverageAge(ArrayList<Review> reviews) {
+		double sum = 0.0;
+		for(Review review: reviews) {
+			sum += review.getAge();
+		}
+		return sum / reviews.size();
+	}
 
+	/**
+	 * This is a helper method to get Median Average from Arraylist of Reviews
+	 * * Since this is helper method with accessor being private. We are pasting the function code
+	 * here.
+	 * @param ArrayList of reviews
+	 * @return Median Age from the reviews
+	 */
+	private double getMedianAge(ArrayList<Review> reviews) {
+		ArrayList<Integer> ages = new ArrayList<Integer>();
+		for (Review review : reviews) {
+			ages.add(review.getAge());
+		}
+		Collections.sort(ages);
+		if (ages.size() % 2 == 1) {
+			return ages.get(ages.size() / 2);
+		} else {
+			if (ages.size() == 0) {
+				return 0;
+			} else {
+				return (ages.get(ages.size() / 2) + ages.get((ages.size() / 2) - 1)) / 2.0;
+			}
+		}
+	}
+	
+	@Test
+	public void testAvgAge() {
+		double avgAge = getAverageAge(getTestReviews());
+		assertEquals(34, avgAge);
+	}
+	
+	@Test
+	public void testMedianAge() {
+		double medianAge = getMedianAge(getTestReviews());
+		assertEquals(34, medianAge);
+	}
+	
+	@Test
+	public void testDepartmentToNumOfReview() {
+		HashMap<String, Integer> departmentToNumOfReview 
+			= reviewAnalysis.getDepartmentToNumOfReview(getTestReviews());
+		int count = departmentToNumOfReview.get("Initmates");
+		assertEquals(2, count);
+	}
+	
+	@Test
+	public void testGetTopWords() {
+		ArrayList<String> stopwords = reviewAnalysis.getStopWords();
+		boolean isStopWord = false;
+		String word = "again";
+		if(stopwords.contains(word)) {
+			isStopWord = true;
+		}
+		assertEquals(true, isStopWord);
+	}
+	
 	
 
 }

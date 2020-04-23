@@ -338,7 +338,7 @@ public class ReviewAnalysis {
 	 * 
 	 * @return
 	 */
-	private ArrayList<String> getStopWords() {
+	public ArrayList<String> getStopWords() {
 		ArrayList<String> stopWords = new ArrayList<String>();
 		File fr = new File("stopwords.txt");
 		Scanner s;
