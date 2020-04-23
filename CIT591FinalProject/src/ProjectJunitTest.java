@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 
 /*
  * This is our junit testing on overall project analysis.
- * This covers the following classes :ReviewReader, ReviewAnalysis, SentimentAnalysisOnReview, 
+ * This covers the following classes :ReviewReader, ReviewAnalysis, SentimentAnalysisOnReview, Plots
  * SentimentAnalysisOutputFileWriter.
  */
 class ProjectJunitTest {
@@ -28,13 +28,12 @@ class ProjectJunitTest {
     static ArrayList<Review> reviews_with_sentiments;
     static ArrayList<Review> newValidReviews;
     static ReviewAnalysis reviewAnalysis = new ReviewAnalysis(newValidReviews);
-   
-    
-  //  @BeforeClass
-    //public static void setUpBeforeClass() {
-      //      ReviewAnalysis reviewAnalysis= new ReviewAnalysis(newValidReviews);
-       
-    //}
+
+    // @BeforeClass
+    // public static void setUpBeforeClass() {
+    // ReviewAnalysis reviewAnalysis= new ReviewAnalysis(newValidReviews);
+
+    // }
 
     private ArrayList<Review> getTestReviews() {
         ArrayList<Review> testReviews = new ArrayList<Review>();
@@ -275,7 +274,7 @@ class ProjectJunitTest {
 
     @Test
     public void testGetTopWords() {
-       
+
         ArrayList<String> stopwords = reviewAnalysis.getStopWords();
         boolean isStopWord = false;
         String word = "again";
@@ -292,20 +291,39 @@ class ProjectJunitTest {
         arraylist.add(1);
         arraylist.add(2);
         arraylist.add(3);
-        Plots plots = new Plots(reviews);
+        Plots plots = new Plots(newValidReviews);
         double array[] = plots.convertArrayListToArray(arraylist);
         assertEquals(1, array[0]);
         assertEquals(2, array[1]);
         assertEquals(3, array[2]);
     }
-    
-    @Test
-    public void testClassToClothingIds() {
-    	HashMap<String, ArrayList<String>> classToClothingIDs = new HashMap<>();
-    	classToClothingIDs = reviewAnalysis.getClassToClothingIDs();
-    	ArrayList<String> clothingIds = classToClothingIDs.get("Chemises");
-    	assertEquals("10", clothingIds.get(0));
+
+    /**
+     * Helper method to reduce the redundancy in counting data element Since this is
+     * helper method with accessor being private. We are pasting the function code
+     * here.
+     * 
+     * @param map
+     * @param element
+     */
+    private void incrementHashMapPerElement(HashMap<String, Integer> map, String element) {
+        if (!map.containsKey(element)) {
+            map.put(element, 1);
+        } else {
+            int count = map.get(element);
+            count++;
+            map.put(element, count);
+        }
     }
 
+    @Test
+    public void testIncrementHashMapPerElement() {
+        HashMap<String, Integer> map = new HashMap<>();
+        map.put("good", 1);
+        incrementHashMapPerElement(map, "good");
+        incrementHashMapPerElement(map, "bad");
+        assertEquals(2, map.get("good"));
+        assertEquals(1, map.get("bad"));
+    }
 
 }
