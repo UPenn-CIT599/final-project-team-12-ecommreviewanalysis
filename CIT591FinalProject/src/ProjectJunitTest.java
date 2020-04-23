@@ -27,6 +27,22 @@ class ProjectJunitTest {
 	private static ReviewAnalysis reviewAnalysis;
 	private static ArrayList<Review> newValidReviews;
 
+	
+	
+	
+	private ArrayList<Review> getTestReviews() {
+	        ArrayList<Review> testReviews = new ArrayList<Review>();
+	        ArrayList<String> alist=new ArrayList<String>();
+	        Review review1= new Review("0","767",33,"Absolutely wonderful","silk and sexy and comfortable",4, true, 0,"Initmates","Intimate","Intimates",alist,2);
+	        Review review2= new Review("0","767",34,"Absolutely wonderful","silk and sexy and comfortable",4, true, 0,"Initmates","Intimate","Intimates",alist,2);
+	        Review review3= new Review("0","767",35,"Absolutely wonderful","silk and sexy and comfortable",4, true, 0,"Initmates","Intimate","Intimates",alist,2);
+	        testReviews.add(review1);
+	        testReviews.add(review2);
+	        testReviews.add(review3);
+	    return testReviews;
+	}
+	
+
 	//test if the # of records match with what's in csv file.
 	@Test
 	public void testNumberOfReviews() throws IOException {
@@ -186,5 +202,8 @@ class ProjectJunitTest {
 		ArrayList<Review> negativeReviews = reviewAnalysis.getNegativeReviews();
 		assertEquals(5025,negativeReviews.size());
 	}
+	
+
+	
 
 }
