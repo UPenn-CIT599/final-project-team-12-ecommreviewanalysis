@@ -302,6 +302,7 @@ class ProjectJunitTest {
     @Test
     public void testClassToClothingIds() {
     	HashMap<String, ArrayList<String>> classToClothingIDs = new HashMap<>();
+    	classToClothingIDs = reviewAnalysis.getClassToClothingIDs();
     	ArrayList<String> clothingIds = classToClothingIDs.get("Chemises");
     	assertEquals("10", clothingIds.get(0));
     }
