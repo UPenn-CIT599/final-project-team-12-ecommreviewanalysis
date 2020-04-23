@@ -25,7 +25,7 @@ class ProjectJunitTest {
 	private static ReviewReader secondReviewReader;
 	private static ArrayList<Review> reviews_with_sentiments;
 	private static ReviewAnalysis reviewAnalysis;
-	private ArrayList<Review> newValidReviews;
+	private static ArrayList<Review> newValidReviews;
 
 	//test if the # of records match with what's in csv file.
 	@Test
@@ -163,7 +163,7 @@ class ProjectJunitTest {
 	 * Testing findMax function
 	 */
 	@Test
-	public void testFindMaxFunction() {
+	public static void testFindMaxFunction() {
 		HashMap<String, Integer> toBeTested = new HashMap<>();
 		toBeTested.put("lowest", -5);
 		toBeTested.put("Middle", 0);
@@ -171,6 +171,20 @@ class ProjectJunitTest {
 		
 		String maxKey = findMax(toBeTested);
 		assertEquals("Highest", maxKey);
+	}
+	
+	@Test
+	public static void testGetTopFiveKeyWords() {
+		String testTxt = "I love love sweater sweater, black black black, small 'small' small"
+				+ "small. test test test 2 test test would but it again. ";
+		String topKeyWord = reviewAnalysis.getTopFiveKeyWords(testTxt).get(0);
+		assertEquals("test", topKeyWord);
+	}
+	
+	@Test
+	public static void testGetNegativeRevierws() {
+		ArrayList<Review> negativeReviews = reviewAnalysis.getNegativeReviews();
+		assertEquals(5025,negativeReviews.size());
 	}
 
 }
