@@ -3,7 +3,7 @@ Responsibilities: Read Input File and contain the data in necessary format.
 Collaborators: Review
 
 Class: Review 
-Responsibilities: Store and provide data on reviews that is read from FileReader.
+Responsibilities: Store and provide data on reviews that is read from ReviewReader.
 Collaborator: None
 
 Class: SentimentAnalysisOnReviews 
@@ -23,7 +23,7 @@ Collaborator: None
 Class: SentimentAnalysisRunner
 Responsibilities: Read the input file ("Womens Clothing E-Commerce Reviews.csv"), run sentiment analysis getting sentiments and sentiment scores,
 				Then output the result in csv format so we can get used for final data analysis.
-Collaborator: ReviewReader, SentimentAnalysisOnReviews
+Collaborator: ReviewReader, SentimentAnalysisOnReviews, SentimentAnalysisOutputFileWriter
 
 Class: ReviewAnalysis 
 Responsibilities: Run final analysis on Review data (which includes outcome from Sentiment Analysis) 
