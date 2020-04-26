@@ -59,7 +59,7 @@ public class SentimentAnalysisOnReviews {
 						sentimentScore -= 2;
 					}
 
-					//System.out.println(sentiment + "\t" + sentence);
+					System.out.println(sentiment + "\t" + sentence);
 
 					//update the reviews with newly calculated variables.
 					review.setSentiments(sentiments);
