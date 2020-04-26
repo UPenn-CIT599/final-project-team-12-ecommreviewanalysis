@@ -18,12 +18,17 @@
 		<link>
 			<name>commons-csv-1.8-src</name>
 			<type>2</type>
-			<location>C:/Users/lyj90/Downloads/commons-csv-1.8-src.tar/commons-csv-1.8-src</location>
+			<location>/Users/Cindy/eclipse/java-2019-122/Eclipse.app/Contents/MacOS/C::/Users/lyj90/Downloads/commons-csv-1.8-src.tar/commons-csv-1.8-src</location>
+		</link>
+		<link>
+			<name>commons-csv-1.8-src.tar</name>
+			<type>2</type>
+			<location>/Users/Cindy/Downloads/Final Project External Resources Configuration/commons-csv-1.8-src.tar</location>
 		</link>
 		<link>
 			<name>source</name>
 			<type>2</type>
-			<location>C:/Users/lyj90/Downloads/jfreechart-1.0.19/jfreechart-1.0.19/source</location>
+			<location>/Users/Cindy/eclipse/java-2019-122/Eclipse.app/Contents/MacOS/C::/Users/lyj90/Downloads/jfreechart-1.0.19/jfreechart-1.0.19/source</location>
 		</link>
 	</linkedResources>
 </projectDescription>

@@ -1,8 +1,4 @@
-/LICENSE-header.txt
-/LICENSE.txt
-/NOTICE.txt
-/RELEASE-NOTES.txt
-/checkstyle.xml
+/.DS_Store
+/commons-csv-1.8-src/
 /org/
-/pom.xml
-/src/
+/snippet/
