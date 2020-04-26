@@ -209,7 +209,7 @@ class ProjectJunitTest {
     @Test
     public void testGetNegativeRevierws() {
         ArrayList<Review> negativeReviews = reviewAnalysis.getNegativeReviews();
-        assertEquals(5025, negativeReviews.size());
+        assertEquals(5027, negativeReviews.size());
     }
 
     /**
