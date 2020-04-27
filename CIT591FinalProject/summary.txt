@@ -7,7 +7,7 @@ Team members :
 	
 Background : My team was interested in performing sentiment analysis and further data analysis using Java.
 So we were able to do the sentiment analysis using CoreNLP library then run further analysis using our own code
-from the output that we recieved from CoreNLP library. Then we generated our analysis result in both text and
+from the output that we received from CoreNLP library. Then we generated our analysis result in both text and
 plots.
 
 Project Process Breakdown:
@@ -35,9 +35,10 @@ We tried our best to challenge ourself learning new API but also utilize what we
 	9) Conditional Statement (if)
 	10) Data types (conversion of one data type to another).
 	11) Interface
-	12)Polymorphism
+	12) Polymorphism
+	13) Regular Expressions
 
 What we have learned...
 	1) Sentiment Analysis itself takes a long time to run. So instead of running all the Java application every single time, 
-	we need to break down process to two part: 1. run sentiment analyis and produce csv output | 2. run data analysis based on the output.
+	we need to break down process to two part: 1. run sentiment analysis and produce csv output | 2. run data analysis based on the output.
 	2) Learning new API(or library) is not always easy..
