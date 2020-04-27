@@ -17,6 +17,12 @@ Project Process Breakdown:
 	4) Run data analysis trying to answer the questions we have about the review file.
 	5) Output the answers we derived from our analysis in a final output text file and plots.
 
+Work Breakdown:
+	*While everyone participated in all of the classes that has been made. Our team members focused on:
+	Xinyi: Review, ReviewAnalysis, ReviewAnalysisRunner, Plots, ProjectJunitTest.
+	Xiting: ReviewAnalysis, ReviewAnalysisRunner, Plots, ProjectJunitTest.
+	Yong-Jin: Review, ReviewReader, SentimentAnalysisOnReviews, SentimentAnalysisOutputFileWriter, SentimentAanlysisRunner, SentimentAnalyzer, ProjectJunitTest.
+
 We tried our best to challenge ourself learning new API but also utilize what we have learned from the course:
 	1) ArrayList
 	2) Reading and Writing File
