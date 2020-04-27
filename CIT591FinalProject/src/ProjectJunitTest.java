@@ -12,10 +12,10 @@ import java.util.Scanner;
 import org.junit.BeforeClass;
 import org.junit.jupiter.api.Test;
 
-/*
- * This is our junit testing on overall project analysis.
- * This covers the following classes :ReviewReader, ReviewAnalysis, SentimentAnalysisOnReview, Plots
- * SentimentAnalysisOutputFileWriter.
+/**
+ * This is our junit testing on overall project analysis. This covers the
+ * following classes :ReviewReader, ReviewAnalysis, SentimentAnalysisOnReview,
+ * Plots SentimentAnalysisOutputFileWriter.
  */
 class ProjectJunitTest {
 
@@ -28,12 +28,6 @@ class ProjectJunitTest {
     static ArrayList<Review> reviews_with_sentiments;
     static ArrayList<Review> newValidReviews;
     static ReviewAnalysis reviewAnalysis = new ReviewAnalysis(newValidReviews);
-
-    // @BeforeClass
-    // public static void setUpBeforeClass() {
-    // ReviewAnalysis reviewAnalysis= new ReviewAnalysis(newValidReviews);
-
-    // }
 
     private ArrayList<Review> getTestReviews() {
         ArrayList<Review> testReviews = new ArrayList<Review>();
@@ -52,7 +46,11 @@ class ProjectJunitTest {
 
     }
 
-    // test if the # of records match with what's in csv file.
+    /**
+     * test if the # of records match with what's in csv file.
+     * 
+     * @throws IOException
+     */
     @Test
     public void testNumberOfReviews() throws IOException {
         reviewReader = new ReviewReader();
@@ -63,7 +61,9 @@ class ProjectJunitTest {
         assertEquals(actualNumberOfRecords, reviews.size(), "# of records do not match!");
     }
 
-    // test if the data are being read correctly.
+    /**
+     * test if the data are being read correctly.
+     */
     @Test
     public void testDataExtraction() {
         Review review1 = reviews.get(0);
@@ -87,7 +87,7 @@ class ProjectJunitTest {
         assertEquals("Intimates", review14.getClassName(), "Class Name data not being inserted correctly");
     }
 
-    /*
+    /**
      * Once we create an output file with the sentiment analysis result. We output
      * the file in csv and will read the file again using ReviewReader class with a
      * constructor that takes in a different argument. We will try to make sure if
@@ -101,7 +101,7 @@ class ProjectJunitTest {
         assertEquals(23486, reviews_with_sentiments.size());
     }
 
-    /*
+    /**
      * With this output, we want to make sure if the both sentiments and sentiment
      * scores are what we have expected as well as ReviewClass and how the records
      * are being read.
@@ -131,7 +131,7 @@ class ProjectJunitTest {
         assertEquals(id92.isEmpty(), idToSentiments.get("92").isEmpty(), "Null (empty) list is giving an error");
     }
 
-    /*
+    /**
      * This test ist to ensure scoring we performed on the sentiment analysis to
      * ensure if the scoring worked as we intended then outputed.
      */
@@ -149,7 +149,7 @@ class ProjectJunitTest {
         assertEquals(3, idToSentimentScores.get("120"), "Positive scoring did not work!");
     }
 
-    /*
+    /**
      * Test review analysis algorithm to get the clothingId with most reviews.
      */
     @Test
@@ -198,6 +198,9 @@ class ProjectJunitTest {
         assertEquals("Highest", maxKey);
     }
 
+    /**
+     * test GetTopFiveWords() method in ReviewAnalysis class
+     */
     @Test
     public void testGetTopFiveKeyWords() {
         String testTxt = "I love love sweater sweater, black black black, small 'small' small"
@@ -253,18 +256,27 @@ class ProjectJunitTest {
         }
     }
 
+    /**
+     * test getAverageAge() method in ReviewAnalysis class
+     */
     @Test
     public void testAvgAge() {
         double avgAge = getAverageAge(getTestReviews());
         assertEquals(34, avgAge);
     }
 
+    /**
+     * test getMeianAge() method in ReviewAnalysis class
+     */
     @Test
     public void testMedianAge() {
         double medianAge = getMedianAge(getTestReviews());
         assertEquals(34, medianAge);
     }
 
+    /**
+     * test getDepartmentToNumOfReview() method in ReviewAnalysis class
+     */
     @Test
     public void testDepartmentToNumOfReview() {
         HashMap<String, Integer> departmentToNumOfReview = reviewAnalysis.getDepartmentToNumOfReview(getTestReviews());
@@ -272,6 +284,9 @@ class ProjectJunitTest {
         assertEquals(1, count);
     }
 
+    /**
+     * test getStopWords() method in ReviewAnalysis class
+     */
     @Test
     public void testGetTopWords() {
 
@@ -284,6 +299,9 @@ class ProjectJunitTest {
         assertEquals(true, isStopWord);
     }
 
+    /**
+     * test convertArrayListToArray method in Plots class
+     */
     @Test
     public void testConvertArrayListToArray() {
 
@@ -316,6 +334,9 @@ class ProjectJunitTest {
         }
     }
 
+    /**
+     * test IncrementHashMapPerElement() method in ReviewAnalysis class
+     */
     @Test
     public void testIncrementHashMapPerElement() {
         HashMap<String, Integer> map = new HashMap<>();

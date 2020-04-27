@@ -57,7 +57,7 @@ public class Plots {
 
     /**
      * To get an arraylist of sentiment score for generating histogram of sentiment
-     * score distribution  and other plots we might come up with.
+     * score distribution and other plots we might come up with.
      * 
      * @return an arraylist of sentiment score
      */
@@ -71,20 +71,25 @@ public class Plots {
         }
         return sentimentscoreList;
     }
-    
-    private ArrayList<String> getDepartments(){
-    	ArrayList<String> departments = new ArrayList<>();
-    	for(Review review : reviews) {
-    		String department = review.getDepartmentName();
-    		departments.add(department);
-    	}
-    	return departments;
-    }
-    
-    
-    
+
     /**
-     * to convert arraylist to array, this is a helper method for plotHistogram1() and plotHistogram2().
+     * To get an arraylist of departments for generating the barchart of number of
+     * negative/neutral/positive reviews by department
+     * 
+     * @return an arraylist of departments
+     */
+    private ArrayList<String> getDepartments() {
+        ArrayList<String> departments = new ArrayList<>();
+        for (Review review : reviews) {
+            String department = review.getDepartmentName();
+            departments.add(department);
+        }
+        return departments;
+    }
+
+    /**
+     * to convert arraylist to array, this is a helper method for plotHistogram1()
+     * and plotHistogram2().
      * 
      * @param arraylist
      * @return array
@@ -100,27 +105,29 @@ public class Plots {
         }
         return nums;
     }
-    
+
     /**
      * To generate histogram of data distribution and write it to a jpeg
+     * 
      * @param chartTitle
      * @param xAxisLabel
      * @param yAxisLabel
      * @param value
      * @throws IOException
      */
-    private void plotHistogram(String chartTitle, String xAxisLabel, String yAxisLabel, double[] value) throws IOException {
-    	HistogramDataset dataset = new HistogramDataset();
+    private void plotHistogram(String chartTitle, String xAxisLabel, String yAxisLabel, double[] value)
+            throws IOException {
+        HistogramDataset dataset = new HistogramDataset();
         dataset.addSeries("key", value, 50);
-        JFreeChart histogram = ChartFactory.createHistogram(chartTitle, xAxisLabel, yAxisLabel, 
-                dataset, PlotOrientation.VERTICAL, false, false, false);
-        
+        JFreeChart histogram = ChartFactory.createHistogram(chartTitle, xAxisLabel, yAxisLabel, dataset,
+                PlotOrientation.VERTICAL, false, false, false);
+
         String chartName = "Distribution_of_" + yAxisLabel + ".jpeg";
         File histogramToJPEG = new File(chartName);
         ChartUtilities.saveChartAsJPEG(histogramToJPEG, histogram, 640, 480);
         System.out.println(chartName + " is created in your directory");
     }
-    
+
     /**
      * To generate histogram of customer age distribution and write it to a jpeg
      * file
@@ -128,7 +135,7 @@ public class Plots {
      * @throws IOException
      */
     public void plotHistogram1() throws IOException {
-        
+
         String chartTitle = "Distribution of Customer Age";
         String xAxisLabel = "Number of Reviews";
         String yAxisLabel = "Customer Age";
@@ -136,7 +143,7 @@ public class Plots {
         double[] value = convertArrayListToArray(customerAge);
         plotHistogram(chartTitle, xAxisLabel, yAxisLabel, value);
     }
-    
+
     /**
      * To generate histogram of sentiment score distribution and write it to a jpeg
      * file
@@ -144,8 +151,8 @@ public class Plots {
      * @throws IOException
      */
     public void plotHistogram2() throws IOException {
-    	
-    	String chartTitle = "Distribution of SentimentScore";
+
+        String chartTitle = "Distribution of SentimentScore";
         String xAxisLabel = "Number of Reviews";
         String yAxisLabel = "Sentiment Score";
         ArrayList<Integer> sentimentScore = getSentimentScore();
@@ -160,9 +167,9 @@ public class Plots {
      * 
      * @throws IOException
      */
-    public void plotPieChart(int PositiveReviews, int NegativeReviews, int NeutralReviews) throws IOException { 
+    public void plotPieChart(int PositiveReviews, int NegativeReviews, int NeutralReviews) throws IOException {
 
-    	DefaultPieDataset dataset2 = new DefaultPieDataset();
+        DefaultPieDataset dataset2 = new DefaultPieDataset();
         dataset2.setValue("Positive Reviews", PositiveReviews);
         dataset2.setValue("Negative Reviews", NegativeReviews);
         dataset2.setValue("Neutral Reviews", NeutralReviews);
@@ -172,40 +179,41 @@ public class Plots {
         ChartUtilities.saveChartAsJPEG(pieChart1ToJPEG, chart, 640, 480);
         System.out.println("PieChart_of_Reviews.jpeg is created in your directory");
     }
-    
+
     /**
-     * To generate bar chart of number of negative/neutral/positive reviews by department
-     * and write it to a jpeg
+     * To generate bar chart of number of negative/neutral/positive reviews by
+     * department and write it to a jpeg
      * 
      * @throws IOException
      */
-    public void plotBarDeparmentToNumOfReviews(HashMap<String, Integer> departmentToNegativeRev, HashMap<String, Integer> departmentToNeutralRev, 
-    		HashMap<String, Integer> departmentToPositiveRev) throws IOException {
+    public void plotBarDeparmentToNumOfReviews(HashMap<String, Integer> departmentToNegativeRev,
+            HashMap<String, Integer> departmentToNeutralRev, HashMap<String, Integer> departmentToPositiveRev)
+            throws IOException {
 
-    	final String negative = "Negative Reviews";
-    	final String neutral = "Neutral Reviews";
-    	final String positive = "Positive Reviews";
-    	final DefaultCategoryDataset dataset = new DefaultCategoryDataset( ); 
-    	
-    	for (String department : departmentToNegativeRev.keySet()) {
-    		int numOfNegativeRev = departmentToNegativeRev.get(department);
-    		dataset.addValue(numOfNegativeRev, negative, department);
-    	}
-    	for (String department : departmentToNeutralRev.keySet()) {
-    		int numOfNeutralRev = departmentToNeutralRev.get(department);
-    		dataset.addValue(numOfNeutralRev, neutral, department);
-    	}
-    	for (String department : departmentToPositiveRev.keySet()) {
-    		int numOfPositiveRev = departmentToPositiveRev.get(department);
-    		dataset.addValue(numOfPositiveRev, positive, department);
-    	}
-    	
-    	JFreeChart barChart = ChartFactory.createBarChart("Number of Reviews by Department", "Department", 
-    			"Number of Reviews", dataset, PlotOrientation.VERTICAL, true, true, false);
-        
+        final String negative = "Negative Reviews";
+        final String neutral = "Neutral Reviews";
+        final String positive = "Positive Reviews";
+        final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+
+        for (String department : departmentToNegativeRev.keySet()) {
+            int numOfNegativeRev = departmentToNegativeRev.get(department);
+            dataset.addValue(numOfNegativeRev, negative, department);
+        }
+        for (String department : departmentToNeutralRev.keySet()) {
+            int numOfNeutralRev = departmentToNeutralRev.get(department);
+            dataset.addValue(numOfNeutralRev, neutral, department);
+        }
+        for (String department : departmentToPositiveRev.keySet()) {
+            int numOfPositiveRev = departmentToPositiveRev.get(department);
+            dataset.addValue(numOfPositiveRev, positive, department);
+        }
+
+        JFreeChart barChart = ChartFactory.createBarChart("Number of Reviews by Department", "Department",
+                "Number of Reviews", dataset, PlotOrientation.VERTICAL, true, true, false);
+
         File barChart1ToJPEG = new File("BarChart_of_NumOfReviews.jpeg");
         ChartUtilities.saveChartAsJPEG(barChart1ToJPEG, barChart, 640, 480);
-        System.out.println("BarChart_of_NumOfReviews.jpeg is created in your directory"); 
+        System.out.println("BarChart_of_NumOfReviews.jpeg is created in your directory");
     }
 
 }
