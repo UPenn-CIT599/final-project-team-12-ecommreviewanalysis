@@ -76,7 +76,7 @@ public class Plots {
      * To get an arraylist of departments for generating the barchart of number of
      * negative/neutral/positive reviews by department
      * 
-     * @return
+     * @return an arraylist of departments
      */
     private ArrayList<String> getDepartments() {
         ArrayList<String> departments = new ArrayList<>();
